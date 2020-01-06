@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,85 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="JXp-Oc-ZSw">
+                                <rect key="frame" x="30" y="128" width="354" height="450"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qA4-XO-m8U">
+                                        <rect key="frame" x="161.5" y="0.0" width="31" height="30"/>
+                                        <state key="normal" title="加载"/>
+                                        <connections>
+                                            <action selector="show:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cu0-uf-85f"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxf-iA-lTn">
+                                        <rect key="frame" x="138.5" y="60" width="77" height="30"/>
+                                        <state key="normal" title="加载和文字"/>
+                                        <connections>
+                                            <action selector="showTitle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1qf-5C-zQj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5Y-bg-bZS">
+                                        <rect key="frame" x="161.5" y="120" width="31" height="30"/>
+                                        <state key="normal" title="成功"/>
+                                        <connections>
+                                            <action selector="showSuccess:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hOD-6E-MeZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dP-1i-JWD">
+                                        <rect key="frame" x="138.5" y="180" width="77" height="30"/>
+                                        <state key="normal" title="成功和文字"/>
+                                        <connections>
+                                            <action selector="showSuccessTitle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h1w-13-8fh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcT-SW-3cc">
+                                        <rect key="frame" x="161.5" y="240" width="31" height="30"/>
+                                        <state key="normal" title="文字"/>
+                                        <connections>
+                                            <action selector="title:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7KV-m8-aDl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yh7-77-v1n">
+                                        <rect key="frame" x="161.5" y="300" width="31" height="30"/>
+                                        <state key="normal" title="失败"/>
+                                        <connections>
+                                            <action selector="showFail:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HDo-9q-fp6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-aF-vdA">
+                                        <rect key="frame" x="138.5" y="360" width="77" height="30"/>
+                                        <state key="normal" title="失败和文字"/>
+                                        <connections>
+                                            <action selector="showFailtitle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rAa-TK-CJS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4B-cZ-ASX">
+                                        <rect key="frame" x="161.5" y="420" width="31" height="30"/>
+                                        <state key="normal" title="隐藏"/>
+                                        <connections>
+                                            <action selector="dism:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uUz-kR-V10"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JXp-Oc-ZSw" secondAttribute="trailing" constant="30" id="MtE-r2-Ccs"/>
+                            <constraint firstItem="JXp-Oc-ZSw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="ZVl-p5-MEO"/>
+                            <constraint firstItem="JXp-Oc-ZSw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="84" id="ijk-MU-25H"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
     </scenes>
 </document>

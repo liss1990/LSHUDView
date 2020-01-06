@@ -9,38 +9,41 @@
 #import "LSSuccessView.h"
 
  
+@interface LSSuccessView()
+@property(nonatomic,strong)UIView *bgView;
 
+@end
 
 @implementation LSSuccessView
-{
-    UIView *bgView;
-    
-}
+ 
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self drawSuccessLine];
+        [self drawSuccessLine:frame];
 
     }
     return self;
 }
- - (void)drawSuccessLine{
+-(void)_updataView{
+    [self drawSuccessLine:CGRectMake(0, 0, 50, 50)];
+}
+- (void)drawSuccessLine:(CGRect)frame{
 
-     [bgView removeFromSuperview];
-     bgView = [[UIView alloc] initWithFrame:self.frame];
+     [self.bgView removeFromSuperview];
+     self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,frame.size.width, frame.size.height)];
    
-     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.center.x, self.center.y) radius:self.frame.size.width/2.0 startAngle:0 endAngle:M_PI*2 clockwise:YES];
+     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(frame.size.width/2, frame.size.height/2) radius:frame.size.width/2.0 startAngle:0 endAngle:M_PI*2 clockwise:YES];
      //对拐角和中点处理
      path.lineCapStyle  = kCGLineCapRound;
      path.lineJoinStyle = kCGLineJoinRound;
 
      //对号第一部分直线的起始
-     [path moveToPoint:CGPointMake(self.frame.size.width/5-1.5, self.frame.size.width/2)];
-     CGPoint p1 = CGPointMake(self.frame.size.width/5.0*2, self.frame.size.width/4.0*3);
+     [path moveToPoint:CGPointMake(frame.size.width/5-1.5, frame.size.width/2)];
+     CGPoint p1 = CGPointMake(frame.size.width/5.0*2, frame.size.width/4.0*3);
      [path addLineToPoint:p1];
 
      //对号第二部分起始
-     CGPoint p2 = CGPointMake(self.frame.size.width/8.0*7, self.frame.size.width/4.0+6);
+     CGPoint p2 = CGPointMake(frame.size.width/8.0*7,frame.size.width/4.0+6);
      [path addLineToPoint:p2];
 
      CAShapeLayer *layer = [[CAShapeLayer alloc] init];
@@ -60,8 +63,8 @@
      animation.duration = 0.5;
      [layer addAnimation:animation forKey:NSStringFromSelector(@selector(strokeEnd))];
 
-     [bgView.layer addSublayer:layer];
-     [self addSubview:bgView];
+     [self.bgView.layer addSublayer:layer];
+     [self addSubview:self.bgView];
  }
 
 @end

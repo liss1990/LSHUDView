@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LSSuccessView : UIView
 
+-(void)_updataView;
+
 @end
 
 NS_ASSUME_NONNULL_END

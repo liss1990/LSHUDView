@@ -5,9 +5,7 @@
 //  Created by Ebuy EDITSUITE MAC on 2020/1/3.
 //  Copyright © 2020 Lisisi. All rights reserved.
 //
-#import <Masonry/Masonry.h>
-#import "MASConstraint+LSHelper.h"
-#import "LSMASUtilities.h"
+#import <Masonry/Masonry.h>  
 #import "LSHUDView.h"
 #import "DGActivityIndicatorView.h"
 #import "LSFailView.h"
@@ -85,11 +83,12 @@
 }
 
 +(void)_isTouchShow{
+     [self sharedView].bgView.alpha = 1;
     if (![self sharedView].isTouch) {
            [[UIApplication sharedApplication].keyWindow addSubview:[self sharedView]];
        } else {
-           [[self sharedView].frontWindow addSubview:[self sharedView].controlView];
            [[self sharedView].controlView addSubview:[self sharedView]];
+           [[self sharedView].frontWindow addSubview:[self sharedView].controlView];
        }
 }
 
@@ -101,18 +100,91 @@
     [[self sharedView].activityIndicatorView removeFromSuperview];
 }
 
+-(void)_dismiss{
+     __weak LSHUDView *weakSelf = self;
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                __strong LSHUDView *strongSelf = weakSelf;
+                if(strongSelf){
+                    // Stop timer
+                    
+                    __block void (^animationsBlock)(void) = ^{
+                        // Shrink HUD a little to make a nice disappear animation
+    //                    strongSelf.hudView.transform = CGAffineTransformScale(strongSelf.hudView.transform, 1/1.3f, 1/1.3f);
+    //
+    //                    // Fade out all effects (colors, blur, etc.)
+    //                    [strongSelf fadeOutEffects];
+                    };
+                    
+//                    __block void (^completionBlock)(void) = ^{
+//                        // Check if we really achieved to dismiss the HUD (<=> alpha values are applied)
+//                        // and the change of these values has not been cancelled in between e.g. due to a new show
+//                        if(self.backgroundView.alpha == 0.0f){
+//                            // Clean up view hierarchy (overlays)
+//                            [strongSelf.controlView removeFromSuperview];
+//                            [strongSelf.backgroundView removeFromSuperview];
+////                            [strongSelf.hudView removeFromSuperview];
+//                            [strongSelf removeFromSuperview];
+//
+//
+//
+//
+//                            // Tell the rootViewController to update the StatusBar appearance
+//        #if !defined(SV_APP_EXTENSIONS) && TARGET_OS_IOS
+//                            UIViewController *rootController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+//                            [rootController setNeedsStatusBarAppearanceUpdate];
+//        #endif
+//
+//                        }
+//                    };
+                    
+                    // UIViewAnimationOptionBeginFromCurrentState AND a delay doesn't always work as expected
+                    // When UIViewAnimationOptionBeginFromCurrentState is set, animateWithDuration: evaluates the current
+                    // values to check if an animation is necessary. The evaluation happens at function call time and not
+                    // after the delay => the animation is sometimes skipped. Therefore we delay using dispatch_after.
+                    
+                  
+                    
+                    
+//                    dispatch_time_t dipatchTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.dismissTime * NSEC_PER_SEC));
+//                    dispatch_after(dipatchTime, dispatch_get_main_queue(), ^{
+//                        if (strongSelf.fadeOutAnimationDuration > 0) {
+//                            // Animate appearance
+//                            [UIView animateWithDuration:strongSelf.fadeOutAnimationDuration
+//                                                  delay:0
+//                                                options:(UIViewAnimationOptions) (UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState)
+//                                             animations:^{
+//                                                 animationsBlock();
+//                                             } completion:^(BOOL finished) {
+//                                                 completionBlock();
+//                                             }];
+//                        } else {
+//                            animationsBlock();
+//                            completionBlock();
+//                        }
+//                    });
+                    
+                    // Inform iOS to redraw the view hierarchy
+                    [strongSelf setNeedsDisplay];
+                }
+            }];
+}
+
 +(void)dismiss{
     [self sharedView].bgView.alpha = 1;
-    [UIView animateWithDuration:0.2 animations:^{
-        [self sharedView].bgView.alpha = 0; 
-    }completion:^(BOOL finished) {
-        [self sharedView].titleLabel.text = @"";
-        [[self sharedView].controlView removeFromSuperview];
-        [[self sharedView].successView removeFromSuperview];
-        [[self sharedView].failView removeFromSuperview];
-        [[self sharedView].titleLabel removeFromSuperview];
-        [[self sharedView] removeFromSuperview];
-    }];
+     [UIView animateWithDuration:0.2 animations:^{
+         [self sharedView].bgView.alpha = 0;
+     }completion:^(BOOL finished) {
+//         [self sharedView].titleLabel.text = @"";
+//         [self sharedView].successView = nil;
+//         [[self sharedView].controlView removeFromSuperview];
+//        [[self sharedView].successView removeFromSuperview];
+//         [[self sharedView].failView removeFromSuperview];
+//         [[self sharedView].titleLabel removeFromSuperview];
+         [[self sharedView] removeFromSuperview];
+         UIViewController *rootController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+         [rootController setNeedsStatusBarAppearanceUpdate];
+     }];
+//    [[self sharedView] _dismiss];
 }
 
 +(void)dismissWithTimeInterval:(NSTimeInterval)interval{
@@ -123,9 +195,9 @@
 }
 
 +(void)ShowSuccessView{
-     [self _dismissAllView];
+    [self _dismissAllView];
+    [self _isTouchShow];
     [[self sharedView] _Success];
-     [self _isTouchShow];
     [self dismissWithTimeInterval:[self sharedView].dismissTime];
 }
 
@@ -167,24 +239,30 @@
 
 
 -(void)_show{
-     self.bgView.alpha = 0;
+     [self _showWithTitle:@""];
+}
+
+-(void)_showWithTitle:(NSString*)str{
+   self.titleLabel.text = str;
+    self.bgView.alpha = 0;
     [UIView animateWithDuration:0.2 animations:^{
         self.bgView.alpha = 1;
         [self.activityIndicatorView startAnimating];
         [self.bgView addSubview:self.activityIndicatorView];
-        [self _UpdataViewFrame:LSHUDTYPE_SHOW];
+        if (str.length==0) {
+            [self _UpdataViewFrame:LSHUDTYPE_SHOW];
+        } else {
+          [self _UpdataViewFrame:LSHUDTYPE_LOADING];
+        }
     }completion:^(BOOL finished) {
     }];
 }
 
--(void)_showWithTitle:(NSString*)str{
-    self.titleLabel.text = str;
-    [self.activityIndicatorView startAnimating];
-    [self _UpdataViewFrame:LSHUDTYPE_LOADING];
-}
-
 -(void)_Success{
+     
     [self.bgView addSubview:self.successView];
+    [self.successView _updataView];
+    _successView.center = self.bgView.center;
     [self.successView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_offset(0);
         make.size.mas_offset(CGSizeMake(50, 50));
@@ -306,18 +384,7 @@
 }
 
 - (void)controlViewDidReceiveTouchEvent:(id)sender forEvent:(UIEvent*)event {
-//    [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidReceiveTouchEventNotification
-//                                                        object:self
-//                                                      userInfo:[self notificationUserInfo]];
-//    
-//    UITouch *touch = event.allTouches.anyObject;
-//    CGPoint touchLocation = [touch locationInView:self];
-//    
-//    if(CGRectContainsPoint(self.hudView.frame, touchLocation)) {
-//        [[NSNotificationCenter defaultCenter] postNotificationName:SVProgressHUDDidTouchDownInsideNotification
-//                                                            object:self
-//                                                          userInfo:[self notificationUserInfo]];
-//    }
+ 
 }
 
  -(UIWindow *)frontWindow {
@@ -350,7 +417,6 @@
 -(UIView*)bgView{
     if (!_bgView) {
         self.isAccessibilityElement = YES;
-           
        _bgView = [[UIView alloc]initWithFrame:CGRectMake( (LSW / 2) - 50 , (LSH / 2) - 50 ,100, 100)];
         _bgView.backgroundColor  = [UIColor whiteColor];
         _bgView.userInteractionEnabled = YES;
@@ -390,7 +456,7 @@
 }
 
 -(LSSuccessView*)successView{
-    if (!_successView) {
+    if(!_successView){
         _successView = [[LSSuccessView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
         _successView.center = self.bgView.center;
     }
@@ -400,7 +466,7 @@
 -(LSFailView *)failView{
     if (!_failView) {
         _failView = [[LSFailView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
-        _failView.center = self.center;
+        _failView.center = self.bgView.center;
     }
     
     return _failView;
