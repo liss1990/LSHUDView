@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LSSuccessView : UIView
 
+@property(nonatomic,strong)UIColor *strokeColor;
+
 -(void)_updataView;
 
 @end

@@ -19,6 +19,9 @@
     
     [LSHUDView setMinimumDismissTimeInterval:1.5];
     [LSHUDView setCustomHudPosition:-0.25];
+    [LSHUDView setHudAnimationType:DGActivityIndicatorAnimationTypeTriplePulse withColor:[UIColor redColor]];
+    [LSHUDView setSuccessAndFailColor:[UIColor orangeColor]];
+    [LSHUDView setTitleLabelColor:[UIColor redColor]];
 //    [LSHUDView setHudPosition:LSHUDPOSITION_Bottom];
 //    [LSHUDView setBackColor:[UIColor colorWithWhite:0.6 alpha:0.3]];
     

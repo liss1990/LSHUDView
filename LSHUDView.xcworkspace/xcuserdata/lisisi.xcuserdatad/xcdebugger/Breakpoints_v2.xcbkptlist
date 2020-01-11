@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E7795C7F-2794-4E50-8935-94EAE0208D0E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LSHUDView/HUD/LSHUDView.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "-_UpdataViewFrame:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E7795C7F-2794-4E50-8935-94EAE0208D0E - 20c1634b599edcc2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[LSHUDView _UpdataViewFrame:]"
-                  moduleName = "LSHUDView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lisisi/Documents/GitHub/LSHUDView/LSHUDView/HUD/LSHUDView.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "292"
-                  endingLineNumber = "292"
-                  offsetFromSymbolStart = "2561">
-               </Location>
-               <Location
-                  uuid = "E7795C7F-2794-4E50-8935-94EAE0208D0E - 624055c9afa95ea3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__30-[LSHUDView _UpdataViewFrame:]_block_invoke_9"
-                  moduleName = "LSHUDView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lisisi/Documents/GitHub/LSHUDView/LSHUDView/HUD/LSHUDView.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "292"
-                  endingLineNumber = "292"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E8045A64-D671-4521-865B-F2CC21CC58E3"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -62,74 +14,10 @@
             filePath = "LSHUDView/HUD/LSHUDView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "-_UpdataViewFrame:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1114BF7D-0E5A-4F9B-85DC-A0935AABB0DE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LSHUDView/HUD/LSHUDView.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
-            landmarkName = "-_UpdataViewFrame:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8129C022-A282-4DBC-AC7C-C346DA0F5AF8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LSHUDView/HUD/LSHUDView.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "-_UpdataViewFrame:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8129C022-A282-4DBC-AC7C-C346DA0F5AF8 - 20c1634b599edcc2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[LSHUDView _UpdataViewFrame:]"
-                  moduleName = "LSHUDView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lisisi/Documents/GitHub/LSHUDView/LSHUDView/HUD/LSHUDView.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "255"
-                  endingLineNumber = "255"
-                  offsetFromSymbolStart = "1314">
-               </Location>
-               <Location
-                  uuid = "8129C022-A282-4DBC-AC7C-C346DA0F5AF8 - 624055c9af555ea9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__30-[LSHUDView _UpdataViewFrame:]_block_invoke_3"
-                  moduleName = "LSHUDView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lisisi/Documents/GitHub/LSHUDView/LSHUDView/HUD/LSHUDView.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "255"
-                  endingLineNumber = "255"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -142,25 +30,9 @@
             filePath = "LSHUDView/HUD/LSHUDView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "-_UpdataViewFrame:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "213087FE-D76E-4334-978A-9E2AE2540DF5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LSHUDView/HUD/LSHUDView.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "+setCustomHudPosition:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

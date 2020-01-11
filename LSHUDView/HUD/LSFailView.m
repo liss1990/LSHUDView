@@ -15,6 +15,7 @@
 @implementation LSFailView
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.strokeColor = [UIColor colorWithRed:52/255.0 green:211/255.0 blue:228/255.0 alpha:1];
         [self drawSuccessLine:frame];
 
     }
@@ -57,7 +58,7 @@
      //内部填充颜色
      layer.fillColor = [UIColor clearColor].CGColor;
      //线条颜色
-     layer.strokeColor = [UIColor colorWithRed:52/255.0 green:211/255.0 blue:228/255.0 alpha:1].CGColor;
+     layer.strokeColor = self.strokeColor.CGColor;
      //线条宽度
      layer.lineWidth = 3;
      layer.path = path.CGPath;

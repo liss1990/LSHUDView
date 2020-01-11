@@ -7,7 +7,7 @@
 //
 #import <Masonry/Masonry.h>  
 #import "LSHUDView.h"
-#import "DGActivityIndicatorView.h"
+
 #import "LSFailView.h"
 #import "LSSuccessView.h"
 
@@ -64,6 +64,7 @@
 
 +(void)setTitleLabelColor:(UIColor *)color{
     [self sharedView].titleColor = color;
+    [self sharedView].titleLabel.textColor = color;
 }
 
 + (void)setMinimumDismissTimeInterval:(NSTimeInterval)interval{
@@ -75,10 +76,17 @@
 }
 ///自定义位置
 +(void)setCustomHudPosition:(CGFloat)positionOffset{
-//    if (positionOffset>0.0) {
-        [self sharedView].positionOffset = positionOffset;
-        [self sharedView].position = LSHUDPOSITION_Custom;
-//    }
+    [self sharedView].positionOffset = positionOffset;
+    [self sharedView].position = LSHUDPOSITION_Custom;
+}
+
++(void)setHudAnimationType:(DGActivityIndicatorAnimationType)type withColor:(UIColor*)color{
+    [self sharedView].activityIndicatorView.type = type;
+    [self sharedView].activityIndicatorView.tintColor = color;
+}
++(void)setSuccessAndFailColor:(UIColor *)color{
+    [self sharedView].successView.strokeColor = color;
+    [self sharedView].failView.strokeColor = color;
 }
 +(void)Show{
     [self _dismissAllView];
@@ -218,6 +226,7 @@
 }
 
 -(void)_UpdataViewFrame:(LSHUDTYPE)type{
+    
     [self.bgView addSubview:self.titleLabel];
     CGFloat labelHeight = 0.0f;
     CGFloat labelWidth = 0.0f;
@@ -235,7 +244,7 @@
         case LSHUDPOSITION_Top:
        {
            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-               make.centerY.equalTo(self).offset(-self.bounds.size.height*0.3);
+               make.centerY.equalTo(self).offset(-LSH*0.3);
            }];
        }break;
         case LSHUDPOSITION_Center:
@@ -247,13 +256,13 @@
         case LSHUDPOSITION_Bottom:
         {
            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-               make.centerY.equalTo(self).offset(self.bounds.size.height*0.3);
+               make.centerY.equalTo(self).offset(LSH*0.3);
            }];
         }break;
         case LSHUDPOSITION_Custom:
         {
-            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {  make.centerY.equalTo(self).offset(self.bounds.size.height*self.positionOffset);
-            }];
+//            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {  make.centerY.equalTo(self).offset(LSH*self.positionOffset);
+//            }];
         }break;
     }
     

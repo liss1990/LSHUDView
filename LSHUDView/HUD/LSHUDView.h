@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DGActivityIndicatorView.h"
 typedef enum : NSUInteger {
     LSHUDPOSITION_Top,
     LSHUDPOSITION_Center,
@@ -47,6 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)setHudPosition:(LSHUDPOSITION)position;
 ///自定义位置
 +(void)setCustomHudPosition:(CGFloat)positionOffset;
+///选择样式
++(void)setHudAnimationType:(DGActivityIndicatorAnimationType)type withColor:(UIColor*)color;
+///设置成功失败颜色
++(void)setSuccessAndFailColor:(UIColor*)color;
 
 +(void)Show;
 
