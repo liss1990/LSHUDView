@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    LSHUDPOSITION_Top,
+    LSHUDPOSITION_Center,
+    LSHUDPOSITION_Bottom,
+    LSHUDPOSITION_Custom,
+} LSHUDPOSITION;
+
 
 typedef enum : NSUInteger {
     LSHUDTYPE_SHOW,
@@ -23,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, nonnull) UIColor *titleColor;
 @property (assign, nonatomic) NSTimeInterval dismissTime;
 @property (assign, nonatomic) BOOL isTouch;
+@property (assign, nonatomic) LSHUDPOSITION position;
+@property (assign, nonatomic) CGFloat positionOffset;
 ///顶部状态的颜色
 + (void)setStateColor:(UIColor*)color;
 //文本颜色
@@ -34,14 +43,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 //设置是否可以被点击
 + (void)setBackViewWithClick:(BOOL)isTouch;
-
+///设置展示的位置
++(void)setHudPosition:(LSHUDPOSITION)position;
+///自定义位置
++(void)setCustomHudPosition:(CGFloat)positionOffset;
 
 +(void)Show;
 
 +(void)ShowWithTitle:(NSString*)str;
 
 +(void)dismiss;
-  
 
 +(void)ShowSuccessView;
 
@@ -49,10 +60,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(void)ShowTitle:(NSString*)title;
 
-
 +(void)ShowSuccessWithTitle:(NSString*)title;
 
 +(void)ShowFailWithTitle:(NSString*)title;
+
+
+
 
 @end
 

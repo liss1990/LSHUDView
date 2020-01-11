@@ -18,13 +18,12 @@
     [super viewDidLoad];
     
     [LSHUDView setMinimumDismissTimeInterval:1.5];
+    [LSHUDView setCustomHudPosition:-0.25];
+//    [LSHUDView setHudPosition:LSHUDPOSITION_Bottom];
 //    [LSHUDView setBackColor:[UIColor colorWithWhite:0.6 alpha:0.3]];
     
 //    [LSHUDView setBackViewWithClick:YES];
-    
-    
-    
-    
+     
 }
 - (IBAction)show:(UIButton *)sender {
     [LSHUDView Show];

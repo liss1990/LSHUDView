@@ -40,6 +40,7 @@
     dispatch_once(&once, ^{ sharedView = [[self alloc] initWithFrame:[[[UIApplication sharedApplication] delegate] window].bounds];sharedView.frame = CGRectMake(0, 0, LSW, LSH);
         sharedView.dismissTime = 1.8;
         sharedView.isTouch = YES;
+        sharedView.position = LSHUDPOSITION_Center;
     });
 #else
     dispatch_once(&once, ^{ sharedView = [[self alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; });
@@ -53,7 +54,6 @@
 }
 //设置背景色
 + (void)setBackColor:(UIColor*)color{
-//    [self sharedView].backgroundView.alpha = 1;
    [self sharedView].backgroundView.backgroundColor = color;
     [self sharedView].isTouch = NO;
 }
@@ -69,11 +69,20 @@
 + (void)setMinimumDismissTimeInterval:(NSTimeInterval)interval{
     [self sharedView].dismissTime = interval;
 }
-
-
+///设置展示的位置
++(void)setHudPosition:(LSHUDPOSITION)position{
+    [self sharedView].position = position;
+}
+///自定义位置
++(void)setCustomHudPosition:(CGFloat)positionOffset{
+//    if (positionOffset>0.0) {
+        [self sharedView].positionOffset = positionOffset;
+        [self sharedView].position = LSHUDPOSITION_Custom;
+//    }
+}
 +(void)Show{
     [self _dismissAllView];
-    [[self sharedView] _show];
+     [[self sharedView] _showWithTitle:@""];
     [self _isTouchShow];
 }
 
@@ -102,82 +111,24 @@
     [[self sharedView].activityIndicatorView removeFromSuperview];
 }
 
--(void)_dismiss{
-     __weak LSHUDView *weakSelf = self;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        __strong LSHUDView *strongSelf = weakSelf;
-        if(strongSelf){
-        __block void (^animationsBlock)(void) = ^{
-                        // Shrink HUD a little to make a nice disappear animation
-    //                    strongSelf.hudView.transform = CGAffineTransformScale(strongSelf.hudView.transform, 1/1.3f, 1/1.3f);
-    //
-    //                    // Fade out all effects (colors, blur, etc.)
-    //                    [strongSelf fadeOutEffects];
-                    };
-                    
-//                    __block void (^completionBlock)(void) = ^{
-//                        // Check if we really achieved to dismiss the HUD (<=> alpha values are applied)
-//                        // and the change of these values has not been cancelled in between e.g. due to a new show
-//                        if(self.backgroundView.alpha == 0.0f){
-//                            // Clean up view hierarchy (overlays)
-//                            [strongSelf.controlView removeFromSuperview];
-//                            [strongSelf.backgroundView removeFromSuperview];
-////                            [strongSelf.hudView removeFromSuperview];
-//                            [strongSelf removeFromSuperview];
-//
-//
-//
-//
-//                            // Tell the rootViewController to update the StatusBar appearance
-//        #if !defined(SV_APP_EXTENSIONS) && TARGET_OS_IOS
-//                            UIViewController *rootController = [[UIApplication sharedApplication] keyWindow].rootViewController;
-//                            [rootController setNeedsStatusBarAppearanceUpdate];
-//        #endif
-//
-//                        }
-//                    };
-                    
-                    // UIViewAnimationOptionBeginFromCurrentState AND a delay doesn't always work as expected
-                    // When UIViewAnimationOptionBeginFromCurrentState is set, animateWithDuration: evaluates the current
-                    // values to check if an animation is necessary. The evaluation happens at function call time and not
-                    // after the delay => the animation is sometimes skipped. Therefore we delay using dispatch_after.
-                    
-                  
-                    
-                    
-//                    dispatch_time_t dipatchTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.dismissTime * NSEC_PER_SEC));
-//                    dispatch_after(dipatchTime, dispatch_get_main_queue(), ^{
-//                        if (strongSelf.fadeOutAnimationDuration > 0) {
-//                            // Animate appearance
-//                            [UIView animateWithDuration:strongSelf.fadeOutAnimationDuration
-//                                                  delay:0
-//                                                options:(UIViewAnimationOptions) (UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState)
-//                                             animations:^{
-//                                                 animationsBlock();
-//                                             } completion:^(BOOL finished) {
-//                                                 completionBlock();
-//                                             }];
-//                        } else {
-//                            animationsBlock();
-//                            completionBlock();
-//                        }
-//                    });
-                    
-                    // Inform iOS to redraw the view hierarchy
-                    [strongSelf setNeedsDisplay];
-                }
-            }];
-}
+ 
 
 +(void)dismiss{
-    [self sharedView].bgView.alpha = 1;
-     [UIView animateWithDuration:0.2 animations:^{
-         [self sharedView].bgView.alpha = 0;
-     }completion:^(BOOL finished) {
-         [[self sharedView] removeFromSuperview];
-         UIViewController *rootController = [[UIApplication sharedApplication] keyWindow].rootViewController;
-         [rootController setNeedsStatusBarAppearanceUpdate];
-     }];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        __block void (^animationsBlock)(void) = ^{
+        [self sharedView].bgView.alpha = 1;
+        [UIView animateWithDuration:0.2 animations:^{
+            [self sharedView].bgView.alpha = 0;
+        }completion:^(BOOL finished) {
+            [[self sharedView] removeFromSuperview];
+            UIViewController *rootController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+                [rootController setNeedsStatusBarAppearanceUpdate];
+            }];
+        };
+        if (animationsBlock) {
+            animationsBlock();
+        }
+    }];
 }
 
 +(void)dismissWithTimeInterval:(NSTimeInterval)interval{
@@ -209,16 +160,16 @@
 }
 
 +(void)ShowSuccessWithTitle:(NSString*)title{
-     [self _dismissAllView];
+    [self _dismissAllView];
     [[self sharedView] _setSuccessLable:title];
-     [self _isTouchShow];
+    [self _isTouchShow];
     [self dismissWithTimeInterval:[self sharedView].dismissTime];
 }
 
 +(void)ShowFailWithTitle:(NSString*)title{
-     [self _dismissAllView];
+    [self _dismissAllView];
     [[self sharedView] _setFailLable:title];
-     [self _isTouchShow];
+    [self _isTouchShow];
     [self dismissWithTimeInterval:[self sharedView].dismissTime];
 }
 
@@ -229,11 +180,7 @@
      view.layer.shadowRadius = radious;
      view.layer.cornerRadius = radious;
 }
-
-
--(void)_show{
-     [self _showWithTitle:@""];
-}
+ 
 
 -(void)_showWithTitle:(NSString*)str{
    self.titleLabel.text = str;
@@ -283,6 +230,33 @@
         labelHeight = 15;
     }
     [self.titleLabel sizeToFit];
+    
+    switch (self.position) {
+        case LSHUDPOSITION_Top:
+       {
+           [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+               make.centerY.equalTo(self).offset(-self.bounds.size.height*0.3);
+           }];
+       }break;
+        case LSHUDPOSITION_Center:
+        {
+            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self);
+            }];
+        }break;
+        case LSHUDPOSITION_Bottom:
+        {
+           [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+               make.centerY.equalTo(self).offset(self.bounds.size.height*0.3);
+           }];
+        }break;
+        case LSHUDPOSITION_Custom:
+        {
+            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {  make.centerY.equalTo(self).offset(self.bounds.size.height*self.positionOffset);
+            }];
+        }break;
+    }
+    
     switch (type) {
         case LSHUDTYPE_SHOW:
         {
