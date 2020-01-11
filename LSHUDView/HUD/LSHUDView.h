@@ -51,6 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)setHudAnimationType:(DGActivityIndicatorAnimationType)type withColor:(UIColor*)color;
 ///设置成功失败颜色
 +(void)setSuccessAndFailColor:(UIColor*)color;
+///设置Hud背景色
++(void)setHUDBackColor:(UIColor*)color;
+
 
 +(void)Show;
 

@@ -34,7 +34,6 @@
 
 + (LSHUDView*)sharedView {
     static dispatch_once_t once;
-    
     static LSHUDView *sharedView;
 #if !defined(SV_APP_EXTENSIONS)
     dispatch_once(&once, ^{ sharedView = [[self alloc] initWithFrame:[[[UIApplication sharedApplication] delegate] window].bounds];sharedView.frame = CGRectMake(0, 0, LSW, LSH);
@@ -88,6 +87,14 @@
     [self sharedView].successView.strokeColor = color;
     [self sharedView].failView.strokeColor = color;
 }
+
+///设置Hud背景色
++(void)setHUDBackColor:(UIColor*)color{
+    [self sharedView].bgView.backgroundColor = color;
+}
+
+
+
 +(void)Show{
     [self _dismissAllView];
      [[self sharedView] _showWithTitle:@""];
@@ -122,21 +129,14 @@
  
 
 +(void)dismiss{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        __block void (^animationsBlock)(void) = ^{
-        [self sharedView].bgView.alpha = 1;
-        [UIView animateWithDuration:0.2 animations:^{
-            [self sharedView].bgView.alpha = 0;
-        }completion:^(BOOL finished) {
-            [[self sharedView] removeFromSuperview];
-            UIViewController *rootController = [[UIApplication sharedApplication] keyWindow].rootViewController;
-                [rootController setNeedsStatusBarAppearanceUpdate];
-            }];
-        };
-        if (animationsBlock) {
-            animationsBlock();
-        }
-    }];
+    [self sharedView].bgView.alpha = 1;
+    [UIView animateWithDuration:0.2 animations:^{
+        [self sharedView].bgView.alpha = 0;
+    }completion:^(BOOL finished) {
+        [[self sharedView] removeFromSuperview];
+        UIViewController *rootController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+            [rootController setNeedsStatusBarAppearanceUpdate];
+    }]; 
 }
 
 +(void)dismissWithTimeInterval:(NSTimeInterval)interval{
