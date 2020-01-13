@@ -11,12 +11,12 @@ Pod::Spec.new do |spec|
  
 
   # spec.platform     = :ios
-  spec.platform     = :ios, "10.0"
+  spec.platform     = :ios, "8.0"
 
   spec.source       = { :git => "https://github.com/liss1990/LSHUDView.git", :tag => "0.0.1" }
 
 
-  spec.source_files  = "LSHUDView/LSHUDView/*"
+  spec.source_files  = "LSHUDView/LSHUDView/*.{h,m}"
   spec.requires_arc = true
   spec.dependency 'Masonry'
   spec.dependency 'DGActivityIndicatorView' 
