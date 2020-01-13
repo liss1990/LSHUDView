@@ -261,8 +261,8 @@
         }break;
         case LSHUDPOSITION_Custom:
         {
-//            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {  make.centerY.equalTo(self).offset(LSH*self.positionOffset);
-//            }];
+            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {  make.centerY.equalTo(self).offset(LSH*self.positionOffset);
+            }];
         }break;
     }
     

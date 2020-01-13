@@ -16,8 +16,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
             endingLineNumber = "91"
-            landmarkName = "+_isTouchShow"
-            landmarkType = "7">
+            landmarkName = "LSHUDView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
             endingLineNumber = "198"
-            landmarkName = "+ShowSuccessView"
+            landmarkName = "-_showWithTitle:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
             endingLineNumber = "107"
-            landmarkName = "-_dismiss"
+            landmarkName = "+ShowWithTitle:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,9 +63,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "460"
-            endingLineNumber = "460"
-            landmarkName = "-successView"
-            landmarkType = "7">
+            endingLineNumber = "460">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -91,7 +89,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "266"
             endingLineNumber = "266"
-            landmarkName = "-_Success"
+            landmarkName = "-_UpdataViewFrame:"
             landmarkType = "7">
             <Locations>
                <Location
@@ -139,8 +137,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "420"
             endingLineNumber = "420"
-            landmarkName = "-bgView"
-            landmarkType = "7">
+            landmarkName = "LSHUDView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
