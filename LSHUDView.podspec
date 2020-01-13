@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "LSHUDView"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.3"
   spec.summary      = "A short description of LSHUDView."
 
   spec.homepage     = "https://github.com/liss1990/LSHUDView"
@@ -13,10 +13,10 @@ Pod::Spec.new do |spec|
   # spec.platform     = :ios
   spec.platform     = :ios, "8.0"
 
-  spec.source       = { :git => "https://github.com/liss1990/LSHUDView.git", :tag => "0.0.2" }
+  spec.source       = { :git => "https://github.com/liss1990/LSHUDView.git", :tag => "0.0.3" }
 
 
-  spec.source_files  = "LSHUDView", "LSHUDView/LSHUDView/*.{h,m}"
+  spec.source_files  = "LSHUDView/LSHUDView/*.{h,m}"
   spec.requires_arc = true
   spec.framework = "UIKit"
   spec.dependency 'Masonry'
