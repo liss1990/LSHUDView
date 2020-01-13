@@ -129,7 +129,7 @@
 		F37C2F1A23C324F400AA92C5 /* LSHUDView */ = {
 			isa = PBXGroup;
 			children = (
-				F37C2F5023C3250500AA92C5 /* HUD */,
+				F37C2F5023C3250500AA92C5 /* LSHUDView */,
 				F37C2F1B23C324F400AA92C5 /* AppDelegate.h */,
 				F37C2F1C23C324F400AA92C5 /* AppDelegate.m */,
 				F37C2F1E23C324F400AA92C5 /* SceneDelegate.h */,
@@ -163,7 +163,7 @@
 			path = LSHUDViewUITests;
 			sourceTree = "<group>";
 		};
-		F37C2F5023C3250500AA92C5 /* HUD */ = {
+		F37C2F5023C3250500AA92C5 /* LSHUDView */ = {
 			isa = PBXGroup;
 			children = (
 				F37C2F5523C3279400AA92C5 /* LSFailView.h */,
@@ -173,7 +173,7 @@
 				F37C2F5423C3279400AA92C5 /* LSSuccessView.h */,
 				F37C2F5223C3279400AA92C5 /* LSSuccessView.m */,
 			);
-			path = HUD;
+			path = LSHUDView;
 			sourceTree = "<group>";
 		};
 		FEF76B51D2FA625B788F3EF0 /* Frameworks */ = {
