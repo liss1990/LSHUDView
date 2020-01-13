@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://github.com/liss1990/LSHUDView.git", :tag => "0.0.1" }
 
 
-  spec.source_files  = "LSHUDView/*.{h,m}"
+  spec.source_files  = "LSHUDView/LSHUDView/*"
   spec.requires_arc = true
   spec.dependency 'Masonry'
   spec.dependency 'DGActivityIndicatorView' 
