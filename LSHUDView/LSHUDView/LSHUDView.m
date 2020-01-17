@@ -97,8 +97,9 @@
 
 +(void)Show{
     [self _dismissAllView];
-     [[self sharedView] _showWithTitle:@""];
     [self _isTouchShow];
+    [[self sharedView] _showWithTitle:@""];
+   
 }
 
 +(void)ShowWithTitle:(NSString*)str{
@@ -154,16 +155,16 @@
 }
 
 +(void)ShowFailView{
-     [self _dismissAllView];
+    [self _dismissAllView];
     [self _isTouchShow];
     [[self sharedView] _setFailLable:@""];
     [self dismissWithTimeInterval:[self sharedView].dismissTime];
 }
 
 +(void)ShowTitle:(NSString*)title{
-     [self _dismissAllView];
+    [self _dismissAllView];
     [[self sharedView] _setStateLable:title];
-     [self _isTouchShow];
+    [self _isTouchShow];
     [self dismissWithTimeInterval:[self sharedView].dismissTime];
 }
 
@@ -244,24 +245,25 @@
         case LSHUDPOSITION_Top:
        {
            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-               make.centerY.equalTo(self).offset(-LSH*0.3);
+               make.centerY.equalTo(self.backgroundView).offset(-LSH*0.3);
            }];
        }break;
         case LSHUDPOSITION_Center:
         {
             [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(self);
+                make.centerY.equalTo(self.backgroundView);
             }];
         }break;
         case LSHUDPOSITION_Bottom:
         {
            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-               make.centerY.equalTo(self).offset(LSH*0.3);
+               make.centerY.equalTo(self.backgroundView).offset(LSH*0.3);
            }];
         }break;
         case LSHUDPOSITION_Custom:
         {
-            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {  make.centerY.equalTo(self).offset(LSH*self.positionOffset);
+            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.backgroundView).offset(LSH*self.positionOffset);
             }];
         }break;
     }
@@ -269,8 +271,8 @@
     switch (type) {
         case LSHUDTYPE_SHOW:
         {
-           [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_offset(CGSizeMake(100, 100));
+            [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.height.mas_offset(100);
             }];
             [self.activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(self.bgView);
@@ -280,7 +282,7 @@
         case LSHUDTYPE_SUCCESS:
         {
             [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_offset(CGSizeMake(labelWidth+60>100?labelWidth+60:100, labelHeight+85));
+                make.width.mas_offset(labelWidth+60>100?labelWidth+60:100);
                 make.height.lessThanOrEqualTo(@400);
             }];
             [self.successView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -298,7 +300,7 @@
         case LSHUDTYPE_FAIL:
         {
             [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_offset(CGSizeMake(labelWidth+60>100?labelWidth+60:100, labelHeight+85));
+                make.width.mas_offset(labelWidth+60>100?labelWidth+60:100);
                 make.height.lessThanOrEqualTo(@400);
             }];
            [self.failView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -316,7 +318,7 @@
         case LSHUDTYPE_TITLE:
         {
             [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_offset(CGSizeMake(labelWidth+60, labelHeight+20));
+                make.width.mas_offset(labelWidth+60);
                 make.height.lessThanOrEqualTo(@400);
             }];
             [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -329,7 +331,8 @@
         case LSHUDTYPE_LOADING:
        {
            [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-               make.size.mas_offset(CGSizeMake(labelWidth+60, labelHeight+85));
+               make.width.mas_offset(labelWidth+60);
+               make.height.lessThanOrEqualTo(@400);
            }];
            [self.activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
                make.top.mas_offset(self.titleLabel.text.length>0?15:25);
@@ -385,7 +388,8 @@
         [self.backgroundView addSubview:_bgView];
         [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_offset(0);
-            make.size.mas_offset(CGSizeMake(100, 100));
+            make.width.mas_offset(100);
+            make.height.mas_offset(100);
         }];
         [self setShadowLayer:[UIColor colorWithRed:222/255.0 green:222/255.0 blue:222/255.0 alpha:1] shadowRadius:10 view:_bgView];
     }
@@ -445,7 +449,7 @@
     
     // Update frames
 #if !defined(SV_APP_EXTENSIONS)
-    CGRect windowBounds = [[[UIApplication sharedApplication] delegate] window].bounds;
+    CGRect windowBounds = CGRectMake(0, 0, LSW, LSH); //[[[UIApplication sharedApplication] delegate] window].bounds;
     _controlView.frame = windowBounds;
 #else
     _controlView.frame = [UIScreen mainScreen].bounds;

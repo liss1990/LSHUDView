@@ -18,7 +18,8 @@
     [super viewDidLoad];
     
     [LSHUDView setMinimumDismissTimeInterval:1.5];
-    [LSHUDView setCustomHudPosition:-0.25];
+//    [LSHUDView setCustomHudPosition:-0.2];
+    [LSHUDView setHudPosition:LSHUDPOSITION_Top]; 
 //    [LSHUDView setHudAnimationType:DGActivityIndicatorAnimationTypeBallGridPulse withColor:[UIColor redColor]];
 //    [LSHUDView setSuccessAndFailColor:[UIColor orangeColor]];
 //    [LSHUDView setTitleLabelColor:[UIColor redColor]];
@@ -33,22 +34,22 @@
     [LSHUDView Show];
 }
 - (IBAction)showTitle:(UIButton *)sender {
-    [LSHUDView ShowWithTitle:@"想麻烦啦是啦解放啦圣诞节啦剪短发啦进啦发牢骚加拉加斯地方了"];
+    [LSHUDView ShowWithTitle:@"加载中..."];
 }
 - (IBAction)showSuccess:(UIButton *)sender {
     [LSHUDView ShowSuccessView];
 }
 - (IBAction)showSuccessTitle:(UIButton *)sender {
-    [LSHUDView ShowSuccessWithTitle:@"成功成功成功成功成功成功成功成999887987功成功成功成功成功成功2222"];
+    [LSHUDView ShowSuccessWithTitle:@"成功"];
 }
 - (IBAction)title:(UIButton *)sender {
-    [LSHUDView ShowTitle:@"你在看我吗？你在看我吗？你在看我吗？你在看我吗？你在看我吗？"];
+    [LSHUDView ShowTitle:@"你在看我吗？"];
 }
 - (IBAction)showFail:(UIButton *)sender {
     [LSHUDView ShowFailView];
 }
 - (IBAction)showFailtitle:(UIButton *)sender {
-    [LSHUDView ShowFailWithTitle:@"失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败失败111"];
+    [LSHUDView ShowFailWithTitle:@"失败"];
 }
 - (IBAction)dism:(UIButton *)sender {
     [LSHUDView dismiss];
