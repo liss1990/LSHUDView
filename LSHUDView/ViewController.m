@@ -17,9 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [LSHUDView setMinimumDismissTimeInterval:1.5];
+//    [LSHUDView setMinimumDismissTimeInterval:1.5];
 //    [LSHUDView setCustomHudPosition:-0.2];
-    [LSHUDView setHudPosition:LSHUDPOSITION_Top]; 
+//    [LSHUDView setHudPosition:LSHUDPOSITION_Top]; 
 //    [LSHUDView setHudAnimationType:DGActivityIndicatorAnimationTypeBallGridPulse withColor:[UIColor redColor]];
 //    [LSHUDView setSuccessAndFailColor:[UIColor orangeColor]];
 //    [LSHUDView setTitleLabelColor:[UIColor redColor]];
@@ -49,7 +49,7 @@
     [LSHUDView ShowFailView];
 }
 - (IBAction)showFailtitle:(UIButton *)sender {
-    [LSHUDView ShowFailWithTitle:@"失败"];
+    [LSHUDView ShowFailWithTitle:@"失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd失败失败失败失fafadf败失fgfaasd败132133失败失败失败失败失败失败3131313失败失败失败失败失败131313123失败失败失败3131312失败失败失败313131失败失败失败0000"];
 }
 - (IBAction)dism:(UIButton *)sender {
     [LSHUDView dismiss];
