@@ -4,5 +4,5 @@
 加载动画是使用DGActivityIndicatorView 也需要pod 引入工程。
 
 pod 安装
-pod 'LSHUDView','0.0.3'
+pod 'LSHUDView','0.0.4'
 
